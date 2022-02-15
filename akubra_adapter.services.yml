@@ -2,9 +2,13 @@
 services:
   akubra_adapter.foxml.parser.object_lowlevel_storage:
     class: Drupal\akubra_adapter\Utility\Fedora3\ObjectLowLevelAdapter
+    arguments:
+      - '@settings'
     tags:
       - name: foxml.parser.object_lowlevel_storage
   akubra_adapter.foxml.parser.datastream_lowlevel_storage:
     class: Drupal\akubra_adapter\Utility\Fedora3\DatastreamLowLevelAdapter
+    arguments:
+      - '@settings'
     tags:
       - name: foxml.parser.datastream_lowlevel_storage
