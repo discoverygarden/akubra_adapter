@@ -27,6 +27,13 @@ files to configure the services; specifically:
 |`akubra_adapter_object_basepath`|The path to the object store to be read.| (none; requires configuration) |
 |`akubra_adapter_object_pattern`|The folder/directory structure created within the object store.|`##`|
 
+So, assuming a Fedora's "data" directory is mounted to `/nfs/fedora_data`, you might add to `settings.php`:
+
+```php
+$settings['akubra_adapter_datastream_basepath'] = '/nfs/fedora_data/datastreamStore';
+$settings['akubra_adapter_object_basepath'] = '/nfs/fedora_data/objectStore';
+```
+
 ## Usage
 
 This module provides services that are collected by service collectors in the
