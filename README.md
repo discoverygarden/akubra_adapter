@@ -20,7 +20,7 @@ further information.
 Additionally, there's some configuration to be done in sites `settings.php`
 files to configure the services; specifically:
 
-||Key||Description||Default||
+|Key|Description|Default|
 |---|---|---|
 |`akubra_adapter_datastream_basepath`|The path to the datastream store to be read.| (none; requires configuration) |
 |`akubra_adapter_datastream_pattern`|The folder/directory structure created within the datastream store.|`##`|
