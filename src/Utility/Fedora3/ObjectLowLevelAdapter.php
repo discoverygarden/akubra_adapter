@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\akubra_adapter\Utilty\Fedora3;
+namespace Drupal\akubra_adapter\Utility\Fedora3;
 
-use Drupal\foxml\Utilty\Fedora3\ObjectLowLevelAdapterInterface;
+use Drupal\foxml\Utility\Fedora3\ObjectLowLevelAdapterInterface;
 
 use Drupal\Core\Site\Settings;
 
@@ -24,23 +24,37 @@ class ObjectLowLevelAdapter extends AkubraLowLevelAdapter implements ObjectLowLe
   /**
    * {@inheritdoc}
    */
-  public function getIterator() {
+  public function getIterator() : \Traversable {
     $iterator = new \RecursiveDirectoryIterator(
       $this->basePath,
-      \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::KEY_AS_PATHNAME
+      \FilesystemIterator::SKIP_DOTS |
+        \FilesystemIterator::CURRENT_AS_FILEINFO |
+        \FilesystemIterator::KEY_AS_PATHNAME
     );
 
-    $files = new \CallbackFilterIterator($iterator, function ($file, $key, $iterator) {
-      return $file->isFile() && !$file->isDir() && $file->isReadable() && !$file->isWritable();
-    });
+    // XXX: Paranoia: Pre-filter things.
+    $files = new \RecursiveCallbackFilterIterator(
+      $iterator,
+      function ($file, $key, $iterator) {
+        return $file->isDir() || ($file->isFile() && $file->isReadable() &&
+          !$file->isWritable() && !$file->getPathInfo()->isWritable());
+      }
+    );
 
     $mapper = function ($map) {
       foreach ($map as $key => $file) {
-        yield $key => rawurldecode($file->getBasename());
+        yield $key => explode('/', rawurldecode($file->getBasename()))[1];
       }
     };
 
-    return $mapper($files);
+    return $mapper(new \RecursiveIteratorIterator($files));
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getIteratorType() : int {
+    return ObjectLowLevelAdapterInterface::ITERATOR_PID;
   }
 
 }

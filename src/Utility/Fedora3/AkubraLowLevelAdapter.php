@@ -1,9 +1,12 @@
 <?php
 
-namespace Drupal\akubra_adapter\Utilty\Fedora3;
+namespace Drupal\akubra_adapter\Utility\Fedora3;
 
-use Drupal\foxml\Utilty\Fedora3\LowLevelAdapterInterface;
+use Drupal\foxml\Utility\Fedora3\LowLevelAdapterInterface;
 
+/**
+ * Abstract Akubra low-level adapter.
+ */
 abstract class AkubraLowLevelAdapter implements LowLevelAdapterInterface {
 
   /**
@@ -31,10 +34,9 @@ abstract class AkubraLowLevelAdapter implements LowLevelAdapterInterface {
   /**
    * {@inheritdoc}
    */
-  public function dereference($id) {
+  public function dereference($id) : string {
     // Structure like: "the:pid+DSID+DSID.0"
-    // Need: "{base_path}/{hash_pattern}/{id}"
-
+    // Need: "{base_path}/{hash_pattern}/{id}".
     $slashed = str_replace('+', '/', $id);
     $full = "info:fedora/$slashed";
     $hash = md5($full);
@@ -57,7 +59,7 @@ abstract class AkubraLowLevelAdapter implements LowLevelAdapterInterface {
   /**
    * {@inheritdoc}
    */
-  public function valid() {
+  public function valid() : bool {
     return $this->basePath && $this->pattern && is_dir($this->basePath);
   }
 
