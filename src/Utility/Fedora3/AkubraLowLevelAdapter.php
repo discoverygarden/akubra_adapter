@@ -37,6 +37,7 @@ abstract class AkubraLowLevelAdapter implements LowLevelAdapterInterface {
   public function dereference($id) : string {
     // Structure like: "the:pid+DSID+DSID.0"
     // Need: "{base_path}/{hash_pattern}/{id}".
+    // @see https://github.com/fcrepo3/fcrepo/blob/37df51b9b857fd12c6ab8269820d406c3c4ad774/fcrepo-server/src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java#L17-L68
     $slashed = str_replace('+', '/', $id);
     $full = "info:fedora/$slashed";
     $hash = md5($full);
