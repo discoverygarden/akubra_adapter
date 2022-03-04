@@ -1,4 +1,7 @@
 {
   "name": "discoverygarden/akubra_adapter",
-  "type": "drupal-module"
+  "type": "drupal-module",
+  "require": {
+    "discoverygarden/foxml": "^1"
+  }
 }
