@@ -50,6 +50,10 @@ Current maintainers:
 
 * [discoverygarden](http://www.discoverygarden.ca)
 
+Sponsors:
+
+* [CTDA: Connecticut Digital Archive]
+
 ## Development
 
 If you would like to contribute to this module create an issue, pull request
@@ -61,3 +65,4 @@ and or contact
 [GPLv3](http://www.gnu.org/licenses/gpl-3.0.txt)
 
 [akubra]: https://github.com/akubra/akubra
+[CTDA: Connecticut Digital Archive]: https://lib.uconn.edu/find/connecticut-digital-archive/
