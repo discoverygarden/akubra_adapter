@@ -9,6 +9,8 @@
 Facilitates the access of Fedora3 data directly from [Akubra][akubra]-flavored
 filesystem storage.
 
+## Table of Contents
+
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Configuration](#configuration)
@@ -17,7 +19,7 @@ filesystem storage.
 * [Maintainers and Sponsors](#maintainers-and-sponsors)
 * [Development/Contribution](#developmentcontribution)
 * [License](#license)
-*
+
 ## Requirements
 
 This module requires the following modules/libraries:
