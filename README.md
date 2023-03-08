@@ -1,9 +1,24 @@
 # Akubra Adapter
 
+![](https://github.com/discoverygarden/akubra_adapter/actions/workflows/auto_lint.yml/badge.svg)
+![](https://github.com/discoverygarden/akubra_adapter/actions/workflows/auto-semver.yml/badge.svg)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 ## Introduction
 
-Faciliates the access of Fedora3 data directly from [Akubra][akubra]-flavored
+Facilitates the access of Fedora3 data directly from [Akubra][akubra]-flavored
 filesystem storage.
+
+## Table of Contents
+
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Configuration](#configuration)
+* [Usage](#usage)
+* [Troubleshooting/Issues](#troubleshootingissues)
+* [Maintainers and Sponsors](#maintainers-and-sponsors)
+* [Development/Contribution](#developmentcontribution)
+* [License](#license)
 
 ## Requirements
 
@@ -17,8 +32,10 @@ Install as usual, see
 [this](https://drupal.org/documentation/install/modules-themes/modules-8) for
 further information.
 
-Additionally, there's some configuration to be done in sites `settings.php`
-files to configure the services; specifically:
+## Configuration
+
+Configuration to be done in site's `settings.php`
+files to configure the services:
 
 |Key|Description|Default|
 |---|---|---|
@@ -37,14 +54,14 @@ $settings['akubra_adapter_object_basepath'] = '/nfs/fedora_data/objectStore';
 ## Usage
 
 This module provides services that are collected by service collectors in the
-FOXML module... there's no direct usage outside of configuring it.
+FOXML module. there's no direct usage outside of configuring it.
 
 ## Troubleshooting/Issues
 
 Having problems or solved one? contact
 [discoverygarden](http://support.discoverygarden.ca).
 
-## Maintainers/Sponsors
+## Maintainers and Sponsors
 
 Current maintainers:
 
@@ -53,12 +70,13 @@ Current maintainers:
 Sponsors:
 
 * [CTDA: Connecticut Digital Archive]
+* [FLVC](https://www.flvc.org/)
 
-## Development
+## Development/Contribution
 
-If you would like to contribute to this module create an issue, pull request
-and or contact
-[discoverygarden](http://support.discoverygarden.ca).
+If you would like to contribute to this module, please check out github's helpful
+[Contributing to projects](https://docs.github.com/en/get-started/quickstart/contributing-to-projects) documentation and Islandora community's [Documention for developers](https://islandora.github.io/documentation/contributing/CONTRIBUTING/#github-issues) to create an issue or pull request and/or
+contact [discoverygarden](http://support.discoverygarden.ca).
 
 ## License
 
