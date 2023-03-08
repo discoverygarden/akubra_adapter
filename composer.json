@@ -1,6 +1,7 @@
 {
   "name": "discoverygarden/akubra_adapter",
   "type": "drupal-module",
+  "license": "GPL-3.0-or-later",
   "require": {
     "discoverygarden/foxml": "^1"
   }
