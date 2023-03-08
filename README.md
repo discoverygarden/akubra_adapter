@@ -70,7 +70,7 @@ Current maintainers:
 Sponsors:
 
 * [CTDA: Connecticut Digital Archive]
-* [FLVC](Add link)
+* [FLVC](https://www.flvc.org/)
 
 ## Development/Contribution
 
