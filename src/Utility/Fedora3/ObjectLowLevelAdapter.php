@@ -2,9 +2,8 @@
 
 namespace Drupal\akubra_adapter\Utility\Fedora3;
 
-use Drupal\foxml\Utility\Fedora3\ObjectLowLevelAdapterInterface;
-
 use Drupal\Core\Site\Settings;
+use Drupal\foxml\Utility\Fedora3\ObjectLowLevelAdapterInterface;
 
 /**
  * Object Akubra adapter.
@@ -33,13 +32,15 @@ class ObjectLowLevelAdapter extends AkubraLowLevelAdapter implements ObjectLowLe
     );
 
     // XXX: Paranoia: Pre-filter things.
-    $files = new \RecursiveCallbackFilterIterator(
-      $iterator,
-      function ($file, $key, $iterator) {
-        return $file->isDir() || ($file->isFile() && $file->isReadable() &&
-          !$file->isWritable() && !$file->getPathInfo()->isWritable());
-      }
-    );
+    $files = static::writeParanoia() ?
+      new \RecursiveCallbackFilterIterator(
+        $iterator,
+        function ($file, $key, $iterator) {
+          return $file->isDir() || ($file->isFile() && $file->isReadable() &&
+            !$file->isWritable() && !$file->getPathInfo()->isWritable());
+        }
+      ) :
+      $iterator;
 
     $mapper = function ($map) {
       foreach ($map as $key => $file) {
@@ -55,6 +56,18 @@ class ObjectLowLevelAdapter extends AkubraLowLevelAdapter implements ObjectLowLe
    */
   public function getIteratorType() : int {
     return ObjectLowLevelAdapterInterface::ITERATOR_PID;
+  }
+
+  /**
+   * Allow pre-filtering for write paranoia to be suppressed.
+   *
+   * @return bool
+   *   TRUE if the AKUBRA_ADAPTER_WRITE_PARANOIA environment is unset or
+   *   truth-y; FALSE if AKUBRA_ADAPTER_WRITE_PARANOIA is false-y.
+   */
+  protected static function writeParanoia() : bool {
+    $env = getenv('AKUBRA_ADAPTER_WRITE_PARANOIA') ?: TRUE;
+    return (bool) $env;
   }
 
 }

@@ -53,6 +53,10 @@ $settings['akubra_adapter_object_basepath'] = '/nfs/fedora_data/objectStore';
 
 Ultimately, the `*_pattern` values need to match the configuration of the source data. For additional detail on their particular meaning, it might be easiest to reference the [inline comments of the original Java code](https://github.com/fcrepo3/fcrepo/blob/37df51b9b857fd12c6ab8269820d406c3c4ad774/fcrepo-server/src/main/java/org/fcrepo/server/storage/lowlevel/akubra/HashPathIdMapper.java#L17-L68).
 
+| Environment variable            | Description | Default |
+|---------------------------------| --- | --- |
+| `AKUBRA_ADAPTER_WRITE_PARANOIA` | Due to how migrations (or more specifically, rolling back migrations) might operate, it can be prudent to avoid allowing items through that are writable or in writable directories, such that they cannot potentially be deleted. By passing something false-y here, we will avoid pre-filtering when iterating over objects. | (unset, which enables paranoia by default) |
+
 ## Usage
 
 This module provides services that are collected by service collectors in the

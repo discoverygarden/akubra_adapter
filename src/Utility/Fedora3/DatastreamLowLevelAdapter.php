@@ -2,9 +2,8 @@
 
 namespace Drupal\akubra_adapter\Utility\Fedora3;
 
-use Drupal\foxml\Utility\Fedora3\DatastreamLowLevelAdapterInterface;
-
 use Drupal\Core\Site\Settings;
+use Drupal\foxml\Utility\Fedora3\DatastreamLowLevelAdapterInterface;
 
 /**
  * Datastream Akubra adapter.
