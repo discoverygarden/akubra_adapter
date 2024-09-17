@@ -66,8 +66,8 @@ class ObjectLowLevelAdapter extends AkubraLowLevelAdapter implements ObjectLowLe
    *   truth-y; FALSE if AKUBRA_ADAPTER_WRITE_PARANOIA is false-y.
    */
   protected static function writeParanoia() : bool {
-    $env = getenv('AKUBRA_ADAPTER_WRITE_PARANOIA') ?: TRUE;
-    return (bool) $env;
+    $env = getenv('AKUBRA_ADAPTER_WRITE_PARANOIA');
+    return $env === FALSE || $env;
   }
 
 }
