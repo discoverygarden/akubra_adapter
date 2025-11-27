@@ -42,9 +42,23 @@ class ObjectLowLevelAdapter extends AkubraLowLevelAdapter implements ObjectLowLe
       ) :
       $iterator;
 
-    $mapper = function ($map) {
+    $mapper = static function (\Traversable $map) {
       foreach ($map as $key => $file) {
-        yield $key => explode('/', rawurldecode($file->getBasename()))[1];
+        // `$file->getBaseName()` is expected to be something like
+        // `info%3Afedora%2Fsome%3Apid` ; however, Akubra can leave additional
+        // `[...]%2Fold` or `[...]%2Fnew` files in its storage if there were I/O
+        // issues (or some form of crash) while writing to storage.
+        //
+        // Here, we want to return the `some%3Apid` bit as `some:pid`, but also
+        // to exclude those `[...]%2Fold` and `[...]%2Fnew` entries.
+        $exploded = explode('/', rawurldecode($file->getBasename()));
+        if (count($exploded) !== 2) {
+          // Should handle excluding the `[...]%2Fold` and `[...]%2Fnew` bits,
+          // as they should have 3 items when exploded, but might also deal with
+          // other potential cruft in the object store.
+          continue;
+        }
+        yield $key => $exploded[1];
       }
     };
 
